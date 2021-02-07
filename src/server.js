@@ -1,8 +1,9 @@
 const express = require("express");
 const mongoose = require('mongoose');
 const app = express();
+const routes = require('./routes');
+const path = require("path");
 const cors = require('cors');
-const UserController = require('./controllers/UserController');
 const PORT = process.env.PORT || 8000;
 
 if (process.env.NODE_ENV !== 'production') {
@@ -11,11 +12,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.use(cors())
 app.use(express.json())
-
-app.get("/", (req, res) => {
-    res.send("This is the home page");
-})
-app.post("/register", UserController.store);
 
 try {
     mongoose.connect(process.env.MONGO_DB_CONNECTION, {
@@ -28,12 +24,8 @@ try {
 
 }
 
-
-
-
-
-
-
+app.use("/files", express.static(path.resolve(__dirname, "..", "files")));
+app.use(routes);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
