@@ -6,10 +6,9 @@ function App() {
   return (
     <div className="App">
       <Container>
-        <h2>Sports App</h2>
+        <h1><b><center>Sports App</center></b></h1>
         <Routes />
       </Container>
-
     </div>
   );
 }
