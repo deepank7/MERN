@@ -7,7 +7,9 @@ function App() {
     <div className="App">
       <Container>
         <h1><b><center>Sports App</center></b></h1>
-        <Routes />
+        <div className="content">
+          <Routes />
+        </div>
       </Container>
     </div>
   );

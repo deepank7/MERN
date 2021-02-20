@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import api from '../../services/api';
 import { Container, Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
-import CameraIcon from '../Assets/camera.png';
+import CameraIcon from '../../Assets/camera.png'
 import './events.css'
 
 //EventsPage will show all the events
@@ -17,8 +17,6 @@ export default function EventsPage() {
     const preview = useMemo(() => {
         return thumbnail ? URL.createObjectURL(thumbnail) : null;
     }, [thumbnail])
-
-    console.log(title, description, price, sport);
 
     const handleSubmit = async (evt) => {
         evt.preventDefault()

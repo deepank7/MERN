@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+}
+
+html, 
+body,
+#root {
+    min-width: 100%;
+}
+
+body {
+    background: rgba(0, 0, 0, 0.500) url("./Assets/background.jpg") no-repeat;
+    background-size: cover;
+}
+
+body,
+input,
+button {
+    font-family: "Oswald";
+    font-size: 14px;
+}
+
+.container {
+    margin: 80px auto;
+    max-width: 450px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container h1 {
+    color: gray;
+    font-size: 48px;
+}
+
+.content {
+    width: 70%;
+    opacity: 0.8;
+    background: #968c8c;
+    margin-top: 50px;
+    border-radius: 4px;
+    padding: 30px;
+}
+
+.content > p {
+    font-size: 22px;
+    line-height: 30px;
+    margin-bottom: 30px;
+}
+
+.content button.submit-btn {
+    border: 0;
+    border-radius: 2px;
+    width: 100%;
+    height: 42px;
+    padding: 0 20px;
+    font-size: 16px;
+    font-weight: 700;
+    background: #c94343;
+    color: aliceblue;
+    cursor: pointer;
+}
+
+.content button.submit-btn:hover {
+    background: #c91818;
+}
+
+.content button.secondary-btn {
+    margin-top: 10px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.content button.secondary-btn:hover {
+
+}
