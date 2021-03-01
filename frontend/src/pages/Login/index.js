@@ -17,7 +17,7 @@ export default function Login({ history }) {
         try {
             if (userId) {
                 localStorage.setItem('user', userId)
-                history.push('/dashboard')
+                history.push('/')
                 console.log(response);
             } else {
                 const { message } = response.data;
@@ -29,7 +29,8 @@ export default function Login({ history }) {
                 }, 2000)
             }
         } catch (error) {
-
+            setError(true)
+            setErrorMessage(error) 
         }
 
     }

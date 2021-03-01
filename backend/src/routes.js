@@ -19,21 +19,18 @@ routes.get('/registration/:registration_id', RegistrationController.getRegistrat
 routes.post('/registration/:registration_id/approvals', ApprovalController.approval)
 routes.post('/registration/:registration_id/rejections', RejectionController.rejection)
 
-
 //Login
 routes.post('/login', LoginController.store);
 
 //Dashboard
 routes.get("/dashboard", DashboardController.getAllEvents);
-routes.get("/dashboard/:sport", DashboardController.getEventByType);
+routes.get("/dashboard/:sport", DashboardController.getAllEvents);
+routes.get('/user/events', DashboardController.getEventsByUserId);
 routes.get("/event/:eventId", DashboardController.getEventById);
-
-
 
 //Event
 routes.post('/event', upload.single("thumbnail"), EventController.createEvent);
 routes.delete('/event/:eventId', EventController.delete);
-
 
 // User
 routes.post("/user/register", UserController.createUser);

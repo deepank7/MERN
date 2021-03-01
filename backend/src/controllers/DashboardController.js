@@ -13,27 +13,55 @@ module.exports = {
         }
     },
 
+    // async getAllEvents(req, res) {
+    //     try {
+    //         const events = await Event.find({});
+    //         if (events) {
+    //             return res.json(events)
+    //         }
+    //     } catch (error) {
+    //         return res.status(400).json({ message: 'No Events yet!' })
+    //     }
+    // },
+
+    // async getEventByType(req, res) {
+    //     const { sport } = req.params;
+    //     const query = sport ? { sport } : {}
+    //     try {
+    //         const eventType = await Event.find(query);
+    //         if (eventType) {
+    //             return res.json(eventType)
+    //         }
+    //     } catch (error) {
+    //         return res.status(400).json({ message: 'No Matching EventType found!' })
+    //     }
+    // },
+
     async getAllEvents(req, res) {
+        const { sport } = req.params;
+        const query = sport ? { sport } : {}
+
         try {
-            const events = await Event.find({});
+            const events = await Event.find(query)
+
             if (events) {
                 return res.json(events)
             }
         } catch (error) {
-            return res.status(400).json({ message: 'No Events yet!' })
+            return res.status(400).json({ message: 'We do have any events yet' })
         }
     },
 
-    async getEventByType(req, res) {
-        const { sport } = req.params;
-        const query = sport ? { sport } : {}
+    async getEventsByUserId(req, res) {
+        const { user_id } = req.headers;
         try {
-            const eventType = await Event.find(query);
-            if (eventType) {
-                return res.json(eventType)
+            const events = await Event.find({ user: user_id })
+
+            if (events) {
+                return res.json(events)
             }
         } catch (error) {
-            return res.status(400).json({ message: 'No Matching EventType found!' })
+            return res.status(400).json({ message: `We do have any events with the user_id ${user_id}` })
         }
-    },
+    }
 }
