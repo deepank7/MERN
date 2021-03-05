@@ -10,6 +10,11 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
 
+
+// Add JWT token to the project
+// Return token when login
+// Send token on request
+
 app.use(cors())
 app.use(express.json())
 

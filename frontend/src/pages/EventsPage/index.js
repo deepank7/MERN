@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import api from '../../services/api';
 import { Container, Button, Form, FormGroup, Label, Input, Alert, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import CameraIcon from '../../Assets/camera.png'
@@ -15,7 +15,13 @@ export default function EventsPage({ history }) {
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
     const [dropdownOpen, setOpen] = useState(false);
+    const user = localStorage.getItem('user');
 
+    useEffect(() => {
+        if (!user) {
+            history.push('/login')
+        }
+    }, [])
     const toggle = () => setOpen(!dropdownOpen);
 
     const preview = useMemo(() => {
@@ -24,7 +30,6 @@ export default function EventsPage({ history }) {
 
     const handleSubmit = async (evt) => {
         evt.preventDefault()
-        const user_id = localStorage.getItem('user');
 
         const eventData = new FormData();
 
@@ -45,7 +50,7 @@ export default function EventsPage({ history }) {
                 thumbnail !== null
             ) {
                 console.log("Event has been sent")
-                await api.post("/event", eventData, { headers: { user_id } })
+                await api.post("/event", eventData, { headers: { user: user } })
                 console.log(eventData)
                 console.log("Event has been saved")
                 setSuccess(true);
@@ -120,7 +125,7 @@ export default function EventsPage({ history }) {
             }
             {
                 success ? (
-                    <Alert className="event-validation" color="success"> Event was creted successfully</Alert>
+                    <Alert className="event-validation" color="success"> Event was created successfully</Alert>
                 ) : ""
             }
         </Container >
