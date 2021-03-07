@@ -20,7 +20,7 @@ export default function Register({ history }) {
 
             if (user) {
                 localStorage.setItem('user', user)
-                localStorage.setItem('user', user)
+                localStorage.setItem('user', user_id)
 
                 history.push('/')
             } else {
