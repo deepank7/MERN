@@ -9,7 +9,7 @@ module.exports = {
                 res.sendStatus(401);
             } else {
                 const { title, description, price, sport, date } = req.body;
-                const { filename } = req.file;
+                const { location } = req.file;
 
                 const user = await User.findById(authData.user._id);
 
@@ -23,7 +23,7 @@ module.exports = {
                     sport,
                     price: parseFloat(price),
                     user: authData.user._id,
-                    thumbnail: filename,
+                    thumbnail: location,
                     date
                 })
 

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, Nav, NavItem, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../user-context'
 
@@ -15,11 +15,11 @@ const TopNav = () => {
         setIsloggedIn(false)
     }
 
-    return isLoggedIn ? 
+    return isLoggedIn ?
         <div>
             <Navbar color="faded" light>
                 <NavbarToggler onClick={toggleNavbar} />
-                <Link to="/login" onClick={logoutHandler}>Logout</Link>
+                <Button outline color="primary"><Link to="/login" onClick={logoutHandler}>Logout</Link></Button>
                 <Collapse isOpen={!collapsed} navbar>
                     <Nav navbar>
                         <NavItem>
@@ -35,7 +35,7 @@ const TopNav = () => {
                 </Collapse>
             </Navbar>
         </div>
-    : ""
+        : ""
 }
 
 export default TopNav;

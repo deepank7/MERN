@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 7000;
 
 const app = express();
 const server = http.Server(app)
-const io = require("socket.io")(server, {
+const io = socketio(server, {
     cors: {
         origin: "*",
         methods: ["GET", "POST", "DELETE"]

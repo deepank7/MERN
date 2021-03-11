@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import api from '../../services/api'
 import moment from 'moment';
-import { Button, ButtonGroup, Alert, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
+import { Button, ButtonGroup, Alert, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Card } from 'reactstrap';
 import socketio from 'socket.io-client';
 import './dashboard.css'
 
@@ -162,10 +162,10 @@ export default function Dashboard({ history }) {
             {eventRequestSuccess ? <Alert color="success"> {eventRequestMessage}</Alert> : ""}
             <div className="filter-panel">
                 <Dropdown isOpen={dropDownOpen} toggle={toggle}>
-                    <DropdownToggle color="primary">
+                    <DropdownToggle color="primary" caret>
                         Filter
                     </DropdownToggle>
-                    <DropdownMenu>
+                    <DropdownMenu dark>
                         <DropdownItem onClick={() => filterHandler(null)} active={rSelected === null}> All Sports</DropdownItem>
                         <DropdownItem onClick={myEventHandler} active={rSelected === 'myevents'}> My Events</DropdownItem>
                         <DropdownItem onClick={() => filterHandler("football")} active={rSelected === 'football'}> Football</DropdownItem>
@@ -177,16 +177,17 @@ export default function Dashboard({ history }) {
             </div>
             <ul className="events-list">
                 {events.map(event => (
-                    <li key={event._id}>
+                    <Card><li key={event._id}>
                         <header style={{ backgroundImage: `url(${event.thumbnail_url})` }} >
                             {event.user === user_id ? <div><Button color="danger" size="sm" onClick={() => deleteEventHandler(event._id)}>Delete</Button></div> : ""}
                         </header>
                         <strong>{event.title}</strong>
-                        <span>Event Date: {moment(event.date).format('l')}</span>
-                        <span>Event Price:{event.price}</span>
-                        <span>Event Description:{event.description}</span>
+                        <span><u>Event Date</u>:{moment(event.date).format('l')}</span>
+                        <span><u>Event Price</u>:{event.price}</span>
+                        <span><u>Event Description</u>:{event.description}</span>
                         <Button color="primary" onClick={() => registrationRequestHandler(event)}>Subscribe</Button>
                     </li>
+                    </Card>
                 ))}
             </ul>
             {
