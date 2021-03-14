@@ -10,8 +10,11 @@ const RegistrationController = require('./controllers/RegistrationController')
 const ApprovalController = require('./controllers/ApprovalController')
 const RejectionController = require('./controllers/RejectionController')
 const uploadToS3 = require('./config/s3Upload');
-
 const routes = express.Router();
+
+routes.get('/status', (req, res) => {
+	res.send({ status: 200 })
+})
 
 //Registration
 routes.post('/registration/:eventId', verifyToken, RegistrationController.create)

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://localhost:7000'
+    baseURL: 'https://sports-app-back07.herokuapp.com'
 })
 
 export default api;
